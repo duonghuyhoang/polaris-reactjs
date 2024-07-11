@@ -4,11 +4,12 @@
   text-align: center;
   background-color: #f1f1f1 !important;
 }
-
+body {
+  place-items: initial !important;
+}
 .Polaris-Frame {
   padding: 30px;
   width: 100vw !important;
-  /* height: 100vh; */
   margin-top: 100px;
 }
 
@@ -16,7 +17,7 @@
   border-inline-end: none !important;
 }
 .heading {
-  margin-top: 220px;
+  margin-top: -50px;
   margin-left: 290px;
   font-size: 22px;
   font-weight: 600;

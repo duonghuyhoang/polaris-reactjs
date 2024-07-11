@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Card, Collapsible, Icon } from "@shopify/polaris";
-import "./collapse.css";
+import "./styles.css";
 import { useState, useCallback, useEffect } from "react";
 import { ChevronRightIcon, ChevronDownIcon } from "@shopify/polaris-icons";
 // eslint-disable-next-line react/prop-types

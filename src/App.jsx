@@ -16,13 +16,15 @@ import titleCollapse from "./contexts";
 
 function App() {
   const [disabled, setDisabled] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const [hasErrorDeliveryDate, setHasDeliveryDate] = useState(false);
+  const [hasErrorStorePickup, setHasStorePickup] = useState(false);
   const [selected, setSelected] = useState(0);
-  const [selectLayout, setSelectLayout] = useState("");
-  const [selectCalendar, setSelectCalendar] = useState("");
-  const [selectCalendarLanguage, setSelectCalendarLanguage] = useState("");
-  const [selectFirstDay, setSelectFirstDay] = useState("");
-  const [selectDateFormat, setSelectDateFormat] = useState("");
+  const [selectLayout, setSelectLayout] = useState("default");
+  const [selectCalendar, setSelectCalendar] = useState("calendar");
+  const [selectCalendarLanguage, setSelectCalendarLanguage] =
+    useState("english");
+  const [selectFirstDay, setSelectFirstDay] = useState("monday");
+  const [selectDateFormat, setSelectDateFormat] = useState("yyyy-mm-dd");
   const [checkedAlwaysOpen, setSheckedAlwaysOpen] = useState(false);
   const [inputThemeColor, setInputThemeColor] = useState("#ffffff");
   const [inputTitleColor, setInputTitleColor] = useState("#ffffff");
@@ -45,43 +47,54 @@ function App() {
 
   const handleSelectLayout = (value) => {
     setSelectLayout(value);
+    setDisabled(false);
   };
 
   const handleSelectCalendar = (value) => {
     setSelectCalendar(value);
+    setDisabled(false);
   };
 
   const handleSelectCalendarLanguage = (value) => {
     setSelectCalendarLanguage(value);
+    setDisabled(false);
   };
 
   const handleSelectFirstDay = (value) => {
     setSelectFirstDay(value);
+    setDisabled(false);
   };
 
   const handleSelectDateFormat = (value) => {
     setSelectDateFormat(value);
+    setDisabled(false);
   };
   const handleColorChangeInputThemeColor = (value) => {
     setInputThemeColor(value);
+    setDisabled(false);
   };
   const handleColorChangeInputTitleColor = (value) => {
     setInputTitleColor(value);
+    setDisabled(false);
   };
   const handleColorChangeInputRequireMess = (value) => {
     setInputRequireMess(value);
+    setDisabled(false);
   };
 
   const handleColorChangeThemeColor = (value) => {
     setInputThemeColor(value.target.value);
+    setDisabled(false);
   };
 
   const handleColorChangeTitleColor = (value) => {
     setInputTitleColor(value.target.value);
+    setDisabled(false);
   };
 
   const handleColorChangeRequireMess = (value) => {
     setInputRequireMess(value.target.value);
+    setDisabled(false);
   };
   const handlecheckedAlwaysOpen = useCallback((newChecked) => {
     setSheckedAlwaysOpen(newChecked);
@@ -199,7 +212,7 @@ function App() {
                 value={inputTitle}
                 onChange={handleChangeTitle}
               />
-              {hasError && (
+              {hasErrorDeliveryDate && inputTitle === "" && (
                 <InlineError
                   message='Please enter a title'
                   fieldID='inputTitle'
@@ -213,7 +226,7 @@ function App() {
                 value={inputDeliveryLabel}
                 onChange={handleChangeDeliveryLabel}
               />
-              {hasError && (
+              {hasErrorDeliveryDate && inputDeliveryLabel === "" && (
                 <InlineError
                   message='Please enter a delivery date label'
                   fieldID='inputDeliveryLabel'
@@ -227,7 +240,7 @@ function App() {
                 value={inputDeliveryTitle}
                 onChange={handleDeliveryTitle}
               />
-              {hasError && inputDeliveryTitle && (
+              {hasErrorDeliveryDate && inputDeliveryTitle === "" && (
                 <InlineError
                   message='Please enter a delivery date title'
                   fieldID='inputDeliveryTitle'
@@ -241,7 +254,7 @@ function App() {
                 value={inputDeliveryTimeTitle}
                 onChange={handleChangeDeliveryTimeTitle}
               />
-              {hasError && inputDeliveryTimeTitle.trim() !== "" && (
+              {hasErrorDeliveryDate && inputDeliveryTimeTitle === "" && (
                 <InlineError
                   message='Please enter a delivery time title'
                   fieldID='inputDeliveryTimeTitle'
@@ -255,7 +268,7 @@ function App() {
                 value={inputRequiredMessageText}
                 onChange={handleChangeRequiredMessageText}
               />
-              {hasError && inputRequiredMessageText.trim() !== "" && (
+              {hasErrorDeliveryDate && inputRequiredMessageText === "" && (
                 <InlineError
                   message='Please enter a required message text'
                   fieldID='inputRequiredMessageText'
@@ -271,7 +284,7 @@ function App() {
                 multiline={4}
                 autoComplete='off'
               />
-              {hasError && inputCustomCSS.trim() !== "" && (
+              {hasErrorDeliveryDate && inputCustomCSS === "" && (
                 <InlineError
                   message='Please enter a custom CSS'
                   fieldID='inputCustomCSS'
@@ -290,7 +303,7 @@ function App() {
                 value={inputStoreLabel}
                 onChange={handleChangeStoreLabel}
               />
-              {selected === 0 && inputStoreLabel.trim() !== "" && (
+              {hasErrorStorePickup && inputStoreLabel === "" && (
                 <InlineError
                   message='Please enter a store pickup label'
                   fieldID='inputStoreLabel'
@@ -304,7 +317,7 @@ function App() {
                 value={inputPickupLocation}
                 onChange={handlePickupLocation}
               />
-              {selected === 0 && inputPickupLocation.trim() !== "" && (
+              {hasErrorStorePickup && inputPickupLocation === "" && (
                 <InlineError
                   message='Please enter a message text to require buyers'
                   fieldID='inputPickupLocation'
@@ -318,7 +331,7 @@ function App() {
                 value={inputStoreDateTitle}
                 onChange={handleChangeStoreDateTitle}
               />
-              {selected === 0 && inputStoreDateTitle.trim() !== "" && (
+              {hasErrorStorePickup && inputStoreDateTitle === "" && (
                 <InlineError
                   message='Please enter a store pickup date title'
                   fieldID='inputStoreDateTitle'
@@ -332,7 +345,7 @@ function App() {
                 value={inputStoreTimeTitle}
                 onChange={handleChangeStoreTimeTitle}
               />
-              {selected === 0 && inputStoreTimeTitle.trim() !== "" && (
+              {hasErrorStorePickup && inputStoreTimeTitle === "" && (
                 <InlineError
                   message='Please enter a store pickup time title'
                   fieldID='inputStoreTimeTitle'
@@ -346,13 +359,12 @@ function App() {
                 value={inputRequiredMessageTextPickup}
                 onChange={handleChangeRequiredMessageTextPickup}
               />
-              {selected === 0 &&
-                inputRequiredMessageTextPickup.trim() !== "" && (
-                  <InlineError
-                    message='Please enter a required message text'
-                    fieldID='inputRequiredMessageTextPickup'
-                  />
-                )}
+              {hasErrorStorePickup && inputRequiredMessageTextPickup === "" && (
+                <InlineError
+                  message='Please enter a required message text'
+                  fieldID='inputRequiredMessageTextPickup'
+                />
+              )}
             </div>
           </div>
         );
@@ -362,28 +374,80 @@ function App() {
   };
 
   const handleAction = () => {
-    console.log("a");
-    if (
-      inputTitle !== "" &&
-      inputDeliveryLabel !== "" &&
-      inputDeliveryTitle !== "" &&
-      inputDeliveryTimeTitle !== "" &&
-      inputRequiredMessageText !== "" &&
-      inputCustomCSS !== "" &&
-      inputStoreLabel !== "" &&
-      inputPickupLocation !== "" &&
-      inputStoreTimeTitle !== "" &&
-      inputRequiredMessageTextPickup !== ""
-    ) {
-      setHasError(false);
-      console.log("Save action triggered");
-      console.log("2", hasError);
+    if (selected == 0) {
+      if (
+        inputTitle !== "" &&
+        inputDeliveryLabel !== "" &&
+        inputDeliveryTitle !== "" &&
+        inputDeliveryTimeTitle !== "" &&
+        inputRequiredMessageText !== "" &&
+        inputCustomCSS !== ""
+      ) {
+        setHasDeliveryDate(false);
+        console.log(
+          "Show the calendar at the product page checked is: ",
+          checkedShowTheCalendar
+        );
+        console.log(
+          "Require the delivery date before checkout checked is: ",
+          checkedRequireTheDelivery
+        );
+        console.log("Layout: ", selectLayout);
+        console.log("Calendar layout: ", selectCalendar);
+        console.log("Always open the calendar checked is: ", checkedAlwaysOpen);
+        console.log("selectCalendarLanguage: ", selectCalendarLanguage);
+        console.log("First day of calendar: ", selectFirstDay);
+        console.log("Date Format: ", selectDateFormat);
+        console.log("Theme color: ", inputThemeColor);
+        console.log("Title color: ", inputTitleColor);
+        console.log("Require message text color: ", inputRequireMess);
+        console.log("Title: ", inputTitle);
+        console.log("Delivery date label: ", inputDeliveryLabel);
+        console.log("Delivery date title: ", inputDeliveryTitle);
+        console.log("Delivery time title: ", inputDeliveryTimeTitle);
+        console.log("Required message text: ", inputRequiredMessageText);
+        console.log("Custom CSS: ", inputCustomCSS);
+      } else {
+        setHasDeliveryDate(true);
+        console.log("Save error");
+      }
     } else {
-      setHasError(true);
-      console.log(hasError);
-    }
-    if (inputDeliveryTitle) {
-      console.log("adasd");
+      if (
+        inputStoreLabel !== "" &&
+        inputPickupLocation !== "" &&
+        inputStoreTimeTitle !== "" &&
+        inputRequiredMessageTextPickup !== ""
+      ) {
+        setHasStorePickup(false);
+        console.log(
+          "Show the calendar at the product page checked is: ",
+          checkedShowTheCalendar
+        );
+        console.log(
+          "Require the delivery date before checkout checked is: ",
+          checkedRequireTheDelivery
+        );
+        console.log("Layout: ", selectLayout);
+        console.log("Calendar layout: ", selectCalendar);
+        console.log("Always open the calendar checked is: ", checkedAlwaysOpen);
+        console.log("selectCalendarLanguage: ", selectCalendarLanguage);
+        console.log("First day of calendar: ", selectFirstDay);
+        console.log("Date Format: ", selectDateFormat);
+        console.log("Theme color: ", inputThemeColor);
+        console.log("Title color: ", inputTitleColor);
+        console.log("Require message text color: ", inputRequireMess);
+        console.log("Store pickup label: ", inputStoreLabel);
+        console.log(
+          "Message text to require buyers to choose a pickup location: ",
+          inputPickupLocation
+        );
+        console.log("Store pickup date title: ", inputStoreDateTitle);
+        console.log("Store pickup time title: ", inputStoreTimeTitle);
+        console.log("Required message text: ", inputRequiredMessageTextPickup);
+      } else {
+        setHasStorePickup(true);
+        console.log("Save error");
+      }
     }
   };
 
