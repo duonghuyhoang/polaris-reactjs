@@ -1,0 +1,29 @@
+.card-collapse {
+  margin: auto;
+  width: 100%;
+  max-width: 1280px;
+  margin-top: 20px;
+}
+#button-toggle-collapse {
+  cursor: pointer;
+  color: #f62369;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  width: 1280px;
+  padding-right: 30px;
+}
+@media screen and (max-width: 1260px) {
+  #button-toggle-collapse {
+    width: 100vw;
+    padding-right: 40px;
+  }
+}
+/* .icon-collapse {
+  position: relative;
+  right: 20px;
+} */
+.wrapper-title {
+  display: flex;
+  gap: 5px;
+}

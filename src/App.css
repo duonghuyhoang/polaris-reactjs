@@ -1,0 +1,106 @@
+#root {
+  margin: 0 auto;
+
+  text-align: center;
+  background-color: #f1f1f1 !important;
+}
+
+.Polaris-Frame {
+  padding: 30px;
+  width: 100vw !important;
+  /* height: 100vh; */
+  margin-top: 100px;
+}
+
+.Polaris-Frame__Main {
+  border-inline-end: none !important;
+}
+.heading {
+  margin-top: 220px;
+  margin-left: 290px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: left;
+}
+.wrapper-postition {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+.group-input {
+  margin-top: 5px;
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+.select-calendar-layout,
+.select-layout,
+.select-calendar-language,
+.select-first-day-calendar,
+.select-date-format,
+.input-calendar-theme-color,
+.input-title-color,
+.input-required-mess {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}
+
+.Polaris-Select {
+  text-align: left !important;
+}
+.input-title-color,
+.input-required-mess,
+.input-calendar-theme-color {
+  position: relative;
+}
+
+.input-color-picker-1,
+.input-color-picker-3,
+.input-color-picker-2 {
+  position: absolute;
+  right: 5px;
+  top: 18px;
+  z-index: 500;
+  border-color: transparent;
+  background-color: transparent;
+  width: 40px;
+  height: 44px;
+}
+.Polaris-Tabs__Tab,
+.Polaris-Tabs__Tab--active,
+.Polaris-Tabs__TabContainer {
+  border-bottom: 2px solid #e1e3e5 !important;
+  background-color: none !important;
+  font-weight: 700;
+}
+.Polaris-Tabs__Tab:not([aria-disabled="true"]):hover {
+  background-color: none !important;
+  color: none;
+}
+.Polaris-Tabs {
+  gap: 0 !important;
+}
+.Polaris-Tabs__Tab,
+.Polaris-Tabs__Tab:hover,
+.Polaris-Tabs__Tab:focus {
+  border-radius: 0% !important;
+  -webkit-border-radius: 0% !important;
+  -moz-border-radius: 0% !important;
+  -ms-border-radius: 0% !important;
+  -o-border-radius: 0% !important;
+  outline: none;
+  background-color: transparent !important;
+}
+.Polaris-Tabs__Tab--active {
+  color: #f62369 !important;
+  border-color: #f62369 !important;
+}
+.Polaris-Tabs__Tab span {
+  font-size: 14px;
+  font-weight: 700;
+  transition-duration: 300ms;
+}
+.input-text {
+  margin-top: 10px;
+}
